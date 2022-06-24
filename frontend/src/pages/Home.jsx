@@ -1,21 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import ToggleTheme from '../components/ToggleTheme.jsx';
 function Home() {
-  const [product, setProduct] = useState(null);
-  const testBackend = async () => {
-    try {
-      const { data } = await axios.get('/api/products');
-      setProduct(data);
-      console.log(data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-  useEffect(() => {
-    testBackend();
-  }, []);
-
-  return <div>Home</div>;
+  return (
+    <div className="dark:bg-very-dark-blue dark:text-white text-very-dark-blue flex justify-center items-center min-h-screen transition duration-700 ">
+      <ToggleTheme />
+    </div>
+  );
 }
 
 export default Home;
