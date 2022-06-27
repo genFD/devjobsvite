@@ -15,5 +15,73 @@
 
 body {
   background-color: rgb(227, 224, 247);
+  min-height: 100vh;
   font-family: 'Kumbh Sans', sans-serif;
+}
+
+/* make images easier to work with */
+img,
+picture {
+  max-width: 100%;
+  display: block;
+}
+img {
+  width: 100%;
+}
+picture {
+  height: 100%;
+}
+
+/* make form elements easier to work with */
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+textarea {
+  resize: none;
+}
+
+/* Remove default bullets */
+ul {
+  list-style: none;
+}
+
+/* remove animations for people who've turned them off */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ------------------- */
+/* Navbar && filter */
+/* ------------------- */
+
+.nav {
+  max-height: 136px;
+  /* height: 136px; */
+  min-width: 375px;
+  overflow: hidden;
+  border: 3px solid red;
+}
+
+.search-container {
+  min-width: 375px;
+}
+.cards-container {
+  min-width: 375px;
+}
+
+@media (min-width: 768px) {
+  .nav {
+    max-height: fit-content;
+    overflow: visible;
+  }
 }
