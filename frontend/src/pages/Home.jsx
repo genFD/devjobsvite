@@ -7,6 +7,7 @@ import {
   Card,
   Cards,
   Modal,
+  CardDetail,
 } from '../components';
 
 function Home() {
@@ -17,8 +18,10 @@ function Home() {
       {/* <Search />
       <Jobs />
       <LoadMoreButton /> */}
+      <Search />
       <Cards />
       <Modal />
+      <CardDetail />
     </main>
   );
 }

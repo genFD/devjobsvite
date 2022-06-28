@@ -8,6 +8,7 @@ import Header from './Header.jsx';
 import Card from './Card.jsx';
 import Cards from './Cards.jsx';
 import Modal from './Modal.jsx';
+import CardDetail from './CardDetail.jsx';
 
 export {
   ButtonOne,
@@ -20,4 +21,5 @@ export {
   Card,
   Cards,
   Modal,
+  CardDetail,
 };

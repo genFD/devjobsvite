@@ -10,6 +10,7 @@ module.exports = {
       'heading-3': ['20px', { lineHeight: '24px' }],
       'heading-4': ['14px', { lineHeight: '18px' }],
       body: ['16px', { lineHeight: '20px' }],
+      body2: ['16px', { lineHeight: '26px' }],
     },
     extend: {
       colors: {
@@ -22,14 +23,19 @@ module.exports = {
         grey: '#9DAEC2',
         'dark-grey': '#6E8098',
         'body-bg': 'rgb(227, 224, 247)',
+        '19202D': '#19202D',
+        '6E8098': '#6E8098',
+        '9DAEC2': '#9DAEC2',
       },
       width: {
         50: '50px',
         115: '115px',
         141: '141px',
+        147: '147px',
         279: '279px',
         286: '286px',
         327: '327px',
+        375: '375px',
         689: '689px',
       },
       height: {
@@ -49,6 +55,7 @@ module.exports = {
       spacing: {
         18: '100px',
         25: '120px',
+        54: '54px',
       },
     },
     screens: {

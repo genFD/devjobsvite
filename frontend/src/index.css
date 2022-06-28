@@ -80,6 +80,9 @@ ul {
 .modal-container {
   min-width: 375px;
 }
+.card-detail {
+  min-width: 375px;
+}
 @media (min-width: 768px) {
   .nav {
     max-height: fit-content;
