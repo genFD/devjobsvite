@@ -69,7 +69,6 @@ ul {
   /* height: 136px; */
   min-width: 375px;
   overflow: hidden;
-  border: 3px solid red;
 }
 
 .search-container {
@@ -78,7 +77,9 @@ ul {
 .cards-container {
   min-width: 375px;
 }
-
+.modal-container {
+  min-width: 375px;
+}
 @media (min-width: 768px) {
   .nav {
     max-height: fit-content;
