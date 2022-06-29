@@ -4,9 +4,10 @@ const CardDetail = () => {
   return (
     <>
       <div className="card-detail flex flex-col items-center mt-4 mb-4 gap-6">
-        <div className="container relative bg-white dark:bg-very-dark-blue w-327 h-228 rounded-md mt-10 flex flex-col justify-center items-center">
-          <div className="w-50 h-50 bg-dark-grey left-auto -top-6 absolute z-10"></div>
-          <div className="mx-auto mt-6 flex flex-col items-center gap-3">
+        {/* Header starts */}
+        <div className="container relative bg-white dark:bg-very-dark-blue w-327 h-228 rounded-md mt-10 flex flex-col justify-center items-center tablet:flex-row border-2 border-violet tablet:w-689 tablet:h-140 tablet:justify-start desktop:w-730">
+          <div className="w-50 h-50 bg-dark-grey left-auto -top-6 absolute z-10 tablet:static tablet:w-140 tablet:h-full"></div>
+          <div className="mx-auto mt-6 flex flex-col items-center gap-3 tablet:mt-0 tablet:mx-0 tablet:ml-8 desktop:ml-10 border-2">
             <div>
               <span className="text-very-dark-blue dark:text-white text-heading-3 font-bold">
                 Scoot
@@ -14,31 +15,36 @@ const CardDetail = () => {
             </div>
             <span className="text-dark-grey text-body">Scoot.com</span>
           </div>
-          <div className="flex items-center mt-6">
+          <div className="flex items-center mt-6 tablet:mt-0 tablet:ml-244 desktop:ml-282">
             <button className="w-147 h-48 bg-body-bg rounded-md grid place-items-center font-bold text-violet text-body transition-colors duration-200 cursor-pointer hover:bg-light-violet">
               Company site
             </button>
           </div>
         </div>
-        <div className="bg-white dark:bg-very-dark-blue w-327 px-6 py-10 mt-6">
-          <header className="flex flex-col">
-            <div className="flex items-center gap-3 text-dark-grey text-body">
-              <span>5h ago</span>
-              <span className="w-1 h-1 rounded-full bg-dark-grey"></span>
-              <span>Full Time</span>
-            </div>
-            <h2 className="text-very-dark-blue dark:text-white text-heading-3 font-bold mt-2">
-              Senior Software Engineer
-            </h2>
-            <h3 className="text-violet text-heading-4 font-bold mt-3">
-              United Kingdom
-            </h3>
-          </header>
+        {/* Header ends */}
 
-          <div className="mt-54">
-            <button className="w-full h-48 bg-violet rounded-md grid place-items-center font-bold text-white text-body transition-colors duration-200 cursor-pointer hover:bg-light-violet ">
-              Apply now
-            </button>
+        {/* Description Starts */}
+        <div className="bg-white rounded-md dark:bg-very-dark-blue w-327 px-6 py-10 mt-6 tablet:w-689 desktop:w-730">
+          <div className="tablet:flex tablet:justify-between tablet:items-center">
+            <header className="flex flex-col">
+              <div className="flex items-center gap-3 text-dark-grey text-body">
+                <span>5h ago</span>
+                <span className="w-1 h-1 rounded-full bg-dark-grey"></span>
+                <span>Full Time</span>
+              </div>
+              <h2 className="text-very-dark-blue dark:text-white text-heading-3 font-bold mt-2">
+                Senior Software Engineer
+              </h2>
+              <h3 className="text-violet text-heading-4 font-bold mt-3">
+                United Kingdom
+              </h3>
+            </header>
+
+            <div className="mt-54 tablet:mt-0 tablet:w-141">
+              <button className="w-full h-48 bg-violet rounded-md grid place-items-center font-bold text-white text-body transition-colors duration-200 cursor-pointer hover:bg-light-violet ">
+                Apply now
+              </button>
+            </div>
           </div>
           <div className="mt-8">
             <p className="text-body2 text-6E8098 dark:text-9DAEC2">
@@ -73,7 +79,7 @@ const CardDetail = () => {
 
           <div className="mt-8">
             <div>
-              <ul className="text-6E8098 text-body2 flex flex-col gap-2 font-normal">
+              <ul className="text-6E8098 dark:text-9DAEC2 text-body2 flex flex-col gap-2 font-normal">
                 <li className="flex gap-4 items-center">
                   <span className="w-1 h-1 rounded-full bg-violet"></span>
                   Morbi interdum mollis sapien. Sed
@@ -119,7 +125,7 @@ const CardDetail = () => {
 
           <div className="mt-8">
             <div>
-              <ul className="text-6E8098 text-body2 flex flex-col gap-2 font-normal">
+              <ul className="text-6E8098 dark:text-9DAEC2 text-body2 flex flex-col gap-2 font-normal">
                 <li className="flex gap-4 items-center">
                   <span className="text-violet font-bold">1</span>
                   Morbi interdum mollis sapien. Sed
@@ -143,8 +149,17 @@ const CardDetail = () => {
             </div>
           </div>
         </div>
-        <div className="w-375 h-24 bg-white dark:bg-very-dark-blue flex items-center justify-center">
-          <button className="w-327 h-48 bg-violet rounded-md grid place-items-center font-bold text-white text-body transition-colors duration-200 cursor-pointer hover:bg-light-violet ">
+        {/* Description Ends */}
+        <div className="w-375 h-24 tablet:w-768 desktop:w-full desktop:px-355 tablet:h-24 bg-white dark:bg-very-dark-blue flex items-center justify-center tablet:justify-between tablet:px-10">
+          <div className="hidden tablet:flex tablet:flex-col">
+            <h3 className="text-19202D dark:text-white font-bold text-heading-3 ">
+              Senior Software Engineer
+            </h3>
+            <span className="text-6E8098 dark:text-9DAEC2">
+              So Digital Inc.
+            </span>
+          </div>
+          <button className="w-327 h-48 tablet:w-141 bg-violet rounded-md grid place-items-center font-bold text-white text-body transition-colors duration-200 cursor-pointer hover:bg-light-violet ">
             Apply now
           </button>
         </div>
