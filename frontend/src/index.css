@@ -16,9 +16,17 @@
 body {
   background-color: rgb(227, 224, 247);
   min-height: 100vh;
+  display: flex;
+  flex-direction: column;
   font-family: 'Kumbh Sans', sans-serif;
 }
-
+.main-content {
+  min-width: 375px;
+}
+.main-footer {
+  margin-top: auto;
+  min-width: 375px;
+}
 /* make images easier to work with */
 img,
 picture {
@@ -45,6 +53,9 @@ textarea {
 
 /* Remove default bullets */
 ul {
+  list-style: none;
+}
+ol {
   list-style: none;
 }
 
@@ -83,7 +94,51 @@ ul {
 .card-detail {
   min-width: 375px;
 }
+.unreqlist {
+  counter-reset: orderedlist;
+}
+.unreqlist li::before {
+  counter-increment: orderedlist;
+  content: counter(orderedlist);
+  color: #5964e0;
+  font-weight: bold;
+  margin-right: 1em;
+}
+
+.req-list {
+  counter-reset: orderedlist;
+}
+.req-list li::before {
+  counter-increment: orderedlist;
+  content: counter(orderedlist);
+  color: #5964e0;
+  font-weight: bold;
+  margin-right: 1em;
+}
+.cards-container {
+  display: grid;
+  place-items: center;
+  row-gap: 49px;
+  grid-template-columns: 1fr;
+}
+
 @media (min-width: 768px) {
+  .cards-container {
+    grid-template-columns: 1fr 1fr;
+    row-gap: 65px;
+    column-gap: 11px;
+  }
+  .nav {
+    max-height: fit-content;
+    overflow: visible;
+  }
+}
+@media (min-width: 1440px) {
+  .cards-container {
+    grid-template-columns: 1fr 1fr 1fr;
+    row-gap: 40px;
+    column-gap: 30px;
+  }
   .nav {
     max-height: fit-content;
     overflow: visible;

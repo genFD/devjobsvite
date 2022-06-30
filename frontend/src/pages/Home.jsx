@@ -8,11 +8,13 @@ import {
   Cards,
   Modal,
   CardDetail,
+  Footer,
 } from '../components';
+import Test from '../components/Test.jsx';
 
 function Home() {
   return (
-    <main className="dark:bg-midnight">
+    <main className="dark:bg-midnight pb-16 main-content">
       {/* <Header /> */}
       {/* <h1>test main </h1> */}
       {/* <Search />
@@ -20,8 +22,10 @@ function Home() {
       <LoadMoreButton /> */}
       <Search />
       <Cards />
-      <Modal />
-      <CardDetail />
+      {/* <Modal /> */}
+      {/* <CardDetail /> */}
+      {/* <Test /> */}
+      <Footer />
     </main>
   );
 }

@@ -34,7 +34,7 @@ const ToggleTheme = () => {
           aria-hidden="true"
           className={classNames(
             enabled ? 'translate-x-7' : 'translate-x-1',
-            'pointer-events-none inline-block h-4 w-4 rounded-full shadow transform ring-0 transition ease-in-out duration-200 bg-violet'
+            'inline-block h-4 w-4 rounded-full shadow transform ring-0 transition ease-in-out duration-200 bg-violet hover:bg-light-violet'
           )}
         />
       </Switch>

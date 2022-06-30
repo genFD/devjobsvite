@@ -1,9 +1,10 @@
 import React from 'react';
+// import Test from './Test';
 
 const CardDetail = () => {
   return (
     <>
-      <div className="card-detail flex flex-col items-center mt-4 mb-4 gap-6">
+      <div className="card-detail flex flex-col items-center mt-4 gap-6">
         {/* Header starts */}
         <div className="container relative bg-white dark:bg-very-dark-blue w-327 h-228 rounded-md mt-10 flex flex-col justify-center items-center tablet:flex-row border-2 border-violet tablet:w-689 tablet:h-140 tablet:justify-start desktop:w-730">
           <div className="w-50 h-50 bg-dark-grey left-auto -top-6 absolute z-10 tablet:static tablet:w-140 tablet:h-full"></div>
@@ -79,24 +80,20 @@ const CardDetail = () => {
 
           <div className="mt-8">
             <div>
-              <ul className="text-6E8098 dark:text-9DAEC2 text-body2 flex flex-col gap-2 font-normal">
+              <ul className="text-6E8098 unreqlist  items-center justify-center dark:text-9DAEC2 text-body2 font-normal">
                 <li className="flex gap-4 items-center">
-                  <span className="w-1 h-1 rounded-full bg-violet"></span>
                   Morbi interdum mollis sapien. Sed
                 </li>
                 <li className="flex gap-4 items-center">
-                  <span className="w-1 h-1 rounded-full bg-violet"></span>
                   Phasellus lacinia magna a ullamcorper laoreet, lectus arcu
                   pulvinar risus
                 </li>
                 <li className="flex gap-4 items-center">
-                  <span className="w-1 h-1 rounded-full bg-violet"></span>
                   Mauris nibh felis, adipiscing varius, adipiscing in, lacinia
                   vel, tellus. Suspendisse ac urna. Etiam pellentesque mauris ut
                   lectus.
                 </li>
                 <li className="flex gap-4 items-center">
-                  <span className="w-1 h-1 rounded-full bg-violet"></span>
                   Morbi interdum mollis sapien. Sed
                 </li>
               </ul>
@@ -125,27 +122,23 @@ const CardDetail = () => {
 
           <div className="mt-8">
             <div>
-              <ul className="text-6E8098 dark:text-9DAEC2 text-body2 flex flex-col gap-2 font-normal">
+              <ol className="text-6E8098 dark:text-9DAEC2 text-body2 flex flex-col gap-2 font-normal req-list">
                 <li className="flex gap-4 items-center">
-                  <span className="text-violet font-bold">1</span>
                   Morbi interdum mollis sapien. Sed
                 </li>
                 <li className="flex gap-4 items-center">
-                  <span className="text-violet font-bold">2</span>
                   Phasellus lacinia magna a ullamcorper laoreet, lectus arcu
                   pulvinar risus
                 </li>
                 <li className="flex gap-4 items-center">
-                  <span className="text-violet font-bold">3</span>
                   Mauris nibh felis, adipiscing varius, adipiscing in, lacinia
                   vel, tellus. Suspendisse ac urna. Etiam pellentesque mauris ut
                   lectus.
                 </li>
                 <li className="flex gap-4 items-center">
-                  <span className="text-violet font-bold">4</span>
                   Morbi interdum mollis sapien. Sed
                 </li>
-              </ul>
+              </ol>
             </div>
           </div>
         </div>

@@ -1,10 +1,20 @@
 import React from 'react';
-import { Card } from '.';
+import { Card } from '../components';
+
 const Cards = () => {
   return (
-    <div className="cards-container flex justify-center items-center">
+    <ul className="cards-container mx-auto w-fit mb-8">
       <Card />
-    </div>
+      <Card />
+      <Card />
+      <Card />
+      <Card />
+      <Card />
+      <Card />
+      <Card />
+      <Card />
+      <Card />
+    </ul>
   );
 };
 

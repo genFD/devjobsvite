@@ -9,6 +9,7 @@ import Card from './Card.jsx';
 import Cards from './Cards.jsx';
 import Modal from './Modal.jsx';
 import CardDetail from './CardDetail.jsx';
+import Footer from './Footer.jsx';
 
 export {
   ButtonOne,
@@ -22,4 +23,5 @@ export {
   Cards,
   Modal,
   CardDetail,
+  Footer,
 };
