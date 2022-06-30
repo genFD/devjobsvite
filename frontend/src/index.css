@@ -18,7 +18,7 @@ body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  font-family: 'Kumbh Sans', sans-serif;
+  font-family: 'Baloo 2', Kumbh Sans, Poppins, cursive, sans-serif;
 }
 .main-content {
   min-width: 375px;
@@ -94,6 +94,7 @@ ol {
 .card-detail {
   min-width: 375px;
 }
+
 .unreqlist {
   counter-reset: orderedlist;
 }

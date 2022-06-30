@@ -51,8 +51,8 @@ const Search = () => {
               </div>
               <input
                 id="email1"
-                className="focus:outline-none text-19202D dark:text-white dark:bg-19202D font-normal w-full h-full flex items-center pl-12 pr-4 text-body cursor-pointer"
-                placeholder="Placeholder"
+                className="focus:outline-none caret-violet  text-19202D dark:text-white dark:bg-19202D font-normal w-full h-full flex items-center pl-12 pr-4 text-body cursor-pointer"
+                placeholder="Filter by title"
               />
             </div>
 
@@ -68,7 +68,7 @@ const Search = () => {
               </div>
               <input
                 id="email2"
-                className="focus:outline-none text-19202D dark:text-white dark:bg-19202D font-normal w-full h-full flex items-center pl-12 pr-4 text-body"
+                className="focus:outline-none caret-violet text-19202D dark:text-white dark:bg-19202D font-normal w-full h-full flex items-center pl-12 pr-4 text-body cursor-pointer"
                 placeholder="Placeholder"
               />
             </div>
@@ -105,7 +105,7 @@ const Search = () => {
                   </span>
                 </p>
                 <div className="w-1/3 ml-10 flex justify-end">
-                  <button className="w-20 h-12 bg-5964E0 text-white rounded-md flex items-center justify-center">
+                  <button className="w-20 h-12 bg-5964E0 text-white rounded-md flex items-center justify-center text-body2 transition-colors duration-200 cursor-pointer hover:bg-light-violet">
                     Search
                   </button>
                 </div>

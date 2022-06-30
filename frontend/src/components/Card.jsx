@@ -9,16 +9,16 @@ const Card = () => {
           />
         </svg>
       </div>
-      <div className="w-286 h-147 ">
-        <header className="flex items-center gap-3 mb-3 text-dark-grey text-body">
+      <div className="w-286 h-147 text-dark-grey ">
+        <header className="flex items-center gap-3 mb-3 text-body">
           <span>5h ago</span>
           <span className="w-1 h-1 rounded-full bg-dark-grey"></span>
           <span>Full Time</span>
         </header>
-        <h2 className="mb-4 text-very-dark-blue dark:text-white text-heading-3 font-bold">
+        <h2 className="mb-4 text-very-dark-blue hover:text-6E8098 transition-colors duration-200 cursor-pointer dark:text-white text-heading-3 font-bold">
           Senior Software Engineer
         </h2>
-        <span className="text-dark-grey text-body">Scoot</span>
+        <span className="text-body2">Scoot</span>
         <footer className="mt-6 text-violet text-heading-4 font-bold">
           United Kingdom
         </footer>
