@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Switch } from '@headlessui/react';
 import useDarkmode from '../hook/useDarkmode';
 
@@ -7,7 +7,7 @@ function classNames(...classes) {
 }
 const ToggleTheme = () => {
   const [colorTheme, setTheme] = useDarkmode();
-  const [enabled, setEnabled] = useState(false);
+
   // you can use the space bar to toggle dark and light mode, big improvement usability
   return (
     <div className="flex justify-center items-center w-fit gap-4">
@@ -20,12 +20,11 @@ const ToggleTheme = () => {
       </svg>
       <Switch
         onChange={() => {
-          setEnabled(!enabled);
           setTheme(colorTheme);
         }}
-        checked={enabled}
+        checked={colorTheme}
         className={classNames(
-          enabled ? 'bg-violet' : 'bg-white',
+          colorTheme === 'light' ? 'bg-violet' : 'bg-white',
           'relative inline-flex items-center flex-shrink-0 h-6 w-12 rounded-xl cursor-pointer transition-colors ease-in-out duration-200 focus:outline-none focus:ring-1 focus:ring-offset-1 focus:ring-violet bg-white'
         )}
       >
@@ -33,7 +32,7 @@ const ToggleTheme = () => {
         <span
           aria-hidden="true"
           className={classNames(
-            enabled ? 'translate-x-7' : 'translate-x-1',
+            colorTheme === 'light' ? 'translate-x-7' : 'translate-x-1',
             'inline-block h-4 w-4 rounded-full shadow transform ring-0 transition ease-in-out duration-200 bg-violet hover:bg-light-violet'
           )}
         />

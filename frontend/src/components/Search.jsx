@@ -1,4 +1,62 @@
+import { useEffect, useState } from 'react';
+import Modal from 'react-modal';
+import { LocationModal } from '../components';
+
+Modal.setAppElement('#root');
+
+const customStyles = {
+  overlay: {
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+    zIndex: 50,
+  },
+  content: {
+    top: '50%',
+    left: '50%',
+    right: 'auto',
+    bottom: 'auto',
+    marginRight: '-50%',
+    transform: 'translate(-50%, -50%)',
+    position: 'relative',
+  },
+};
+
 const Search = () => {
+  const [modal, setModal] = useState(false);
+  const [placeholder, setplaceholder] = useState(
+    JSON.parse(localStorage.getItem('placeholder'))
+  );
+
+  const showModal = () => setModal(true);
+  const closeModal = () => setModal(false);
+
+  const modalFixer = () => {
+    if (window.innerWidth >= 768) {
+      closeModal();
+    }
+  };
+
+  const swapPlaceholder = () => {
+    if (window.innerWidth >= 1440) {
+      setplaceholder(true);
+    } else if (window.innerWidth < 1440) {
+      setplaceholder(false);
+    }
+  };
+
+  localStorage.setItem('placeholder', placeholder);
+
+  useEffect(() => {
+    window.addEventListener('resize', () => {
+      modalFixer();
+      swapPlaceholder();
+    });
+    return () =>
+      window.removeEventListener('resize', () => {
+        modalFixer();
+        swapPlaceholder();
+      });
+  }, [placeholder]);
+
   return (
     <div className="container search-container mx-auto px-6 tablet:px-0 w-327 tablet:w-689 desktop:w-1110">
       {/* mobile */}
@@ -6,15 +64,34 @@ const Search = () => {
         <div className="w-327 h-20 tablet:hidden flex justify-between px-6">
           <div className="flex order-2 basis-1/4">
             <div className="flex items-center pr-3 h-full cursor-pointer">
-              <button>
-                <svg width={20} height={20} xmlns="http://www.w3.org/2000/svg">
+              <button onClick={showModal}>
+                <svg
+                  className="location-icon"
+                  width={20}
+                  height={20}
+                  xmlns="http://www.w3.org/2000/svg"
+                >
                   <path
                     d="M19.108 0H.86a.86.86 0 00-.764.455.833.833 0 00.068.884l6.685 9.202.007.01c.242.32.374.708.375 1.107v7.502a.825.825 0 00.248.594.865.865 0 00.942.18l3.756-1.4c.337-.1.56-.41.56-.784v-6.092c0-.399.132-.787.375-1.108l.007-.009 6.685-9.202c.19-.26.217-.6.068-.884A.86.86 0 0019.108 0z"
-                    fill="#6E8098"
+                    // fill="none"
                     fillRule="nonzero"
+                    style={{
+                      fill: '#6E8098',
+                    }}
                   />
                 </svg>
               </button>
+              {
+                <Modal
+                  isOpen={modal}
+                  onRequestClose={closeModal}
+                  style={customStyles}
+                  className=" flex flex-col w-fit rounded-default"
+                  contentLabel="Filter by location"
+                >
+                  <LocationModal closeModal={closeModal} />
+                </Modal>
+              }
             </div>
             <div className="flex items-center">
               <button className="px-3 py-3 bg-5964E0 focus:outline-none hover:bg-opacity-80 ml-2 rounded">
@@ -31,14 +108,14 @@ const Search = () => {
 
           <input
             id="search"
-            className="text-19202D dark:bg-19202D dark:text-white focus:outline-none font-normal h-full basis-3/4 pr-4 flex items-center  text-body order-1"
+            className="text-19202D caret-violet  dark:bg-19202D dark:text-white focus:outline-none font-normal h-full basis-3/4 pr-4 flex items-center text-body order-1"
             placeholder="Filter by title…"
           />
         </div>
 
         {/* tablet/desktop */}
         <div className="bg-white hidden h-full dark:bg-19202D tablet:flex tablet:justify-center">
-          <div className="flex justify-center h-full w-full px-4">
+          <div className="flex justify-center h-full w-full px-4 desktop:pl-8">
             <div className="basis-1/3 relative">
               <div className="absolute text-gray-600 dark:text-gray-400 flex items-center h-full cursor-pointer">
                 <svg width={23} height={23} xmlns="http://www.w3.org/2000/svg">
@@ -52,7 +129,11 @@ const Search = () => {
               <input
                 id="email1"
                 className="focus:outline-none caret-violet  text-19202D dark:text-white dark:bg-19202D font-normal w-full h-full flex items-center pl-12 pr-4 text-body cursor-pointer"
-                placeholder="Filter by title"
+                placeholder={
+                  placeholder === true
+                    ? 'Filter by title, companies, expertise…'
+                    : 'Filter by title…'
+                }
               />
             </div>
 
@@ -69,7 +150,7 @@ const Search = () => {
               <input
                 id="email2"
                 className="focus:outline-none caret-violet text-19202D dark:text-white dark:bg-19202D font-normal w-full h-full flex items-center pl-12 pr-4 text-body cursor-pointer"
-                placeholder="Placeholder"
+                placeholder="Filter by location…"
               />
             </div>
 
@@ -105,7 +186,7 @@ const Search = () => {
                   </span>
                 </p>
                 <div className="w-1/3 ml-10 flex justify-end">
-                  <button className="w-20 h-12 bg-5964E0 text-white rounded-md flex items-center justify-center text-body2 transition-colors duration-200 cursor-pointer hover:bg-light-violet">
+                  <button className="w-20 h-12 desktop:w-123 desktop:h-48 bg-5964E0 text-white rounded-md flex items-center justify-center text-body2 transition-colors duration-200 cursor-pointer hover:bg-light-violet">
                     Search
                   </button>
                 </div>

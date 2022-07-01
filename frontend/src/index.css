@@ -18,7 +18,7 @@ body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  font-family: 'Baloo 2', Kumbh Sans, Poppins, cursive, sans-serif;
+  font-family: 'Baloo 2', Kumbh Sans, Poppins, sans-serif;
 }
 .main-content {
   min-width: 375px;
@@ -85,6 +85,7 @@ ol {
 .search-container {
   min-width: 375px;
 }
+
 .cards-container {
   min-width: 375px;
 }
@@ -143,5 +144,11 @@ ol {
   .nav {
     max-height: fit-content;
     overflow: visible;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .location-icon {
+    fill: white;
   }
 }
