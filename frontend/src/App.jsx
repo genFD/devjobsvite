@@ -1,15 +1,15 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Navbar } from './components';
-import Home from './pages/Home.jsx';
-import Detail from './pages/Detail.jsx';
+import { Home, Error, Register, Detail } from './pages';
 
 function App() {
   return (
     <BrowserRouter>
-      <Navbar />
       <Routes>
+        <Route path="/register" element={<Register />} />
         <Route path="/" element={<Home />} />
         <Route path="/detail/:id" element={<Detail />} />
+        <Route path="*" element={<Error />} />
       </Routes>
     </BrowserRouter>
   );
