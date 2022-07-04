@@ -7,8 +7,7 @@ const Cards = () => {
 
   const getData = async () => {
     try {
-      const { data } = await axios.get('/data.json');
-
+      const { data } = await axios.get('/v1/devjobs/jobs');
       setJobs(data);
     } catch (error) {
       console.log(error.response);
@@ -25,7 +24,7 @@ const Cards = () => {
         jobs &&
         jobs.length > 0 &&
         jobs.map((job) => {
-          return <Card key={job.id} {...job} />;
+          return <Card key={job.id} {...job.content} id={job.id} />;
         })
       )}
     </ul>

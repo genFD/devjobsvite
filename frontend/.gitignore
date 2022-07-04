@@ -22,3 +22,8 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+*.xd
+*.fig
+.DS_Store
+*.sketch
+public/
