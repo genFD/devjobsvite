@@ -1,11 +1,31 @@
-const express = require("express");
-const app = express();
+const express = require('express');
+const dotenv = require('dotenv');
+const colors = require('colors');
+const app = require('./app');
 
-app.get("/api/products", (req, res) => {
-  res.send({ message: "Hello, world!" });
+colors.setTheme({
+  success: ['bgGreen', 'black', 'underline', 'bold'],
+  error: ['bgRed', 'black', 'underline', 'bold'],
 });
 
-const port = 6000;
-app.listen(port, () => {
-  console.log(`listening on port${port}`);
+app.use(express.json());
+dotenv.config();
+
+app.get('/', (req, res) => {
+  res.json({ message: 'Node.js, Express, and Postgres API' });
 });
+
+const PORT = process.env.PORT || 6000;
+
+const startServer = async () => {
+  try {
+    // await connectDatabase();
+    app.listen(
+      PORT,
+      console.log(`SERVER IS LISTENING ON PORT ${PORT}`.success)
+    );
+  } catch (error) {
+    console.log(`Cannot start server : ${error}`.error);
+  }
+};
+startServer();
