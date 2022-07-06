@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect, useContext, useCallback } from 'react';
 import axios from 'axios';
 const AppContext = React.createContext();
 
@@ -11,8 +11,16 @@ const AppProvider = ({ children }) => {
 
   const getallJobs = async () => {
     setLoading(true);
+    let url;
+    const urlQuery = `&position=${query}&company=${query}&expertise=${query}`;
+    if (query) {
+      url = `${API_URL}/search?${urlQuery}`;
+    } else {
+      url = API_URL;
+    }
+
     try {
-      const { data } = await axios.get(`${API_URL}`);
+      const { data } = await axios.get(`${url}`);
       if (data) {
         setResults(data);
       } else {
@@ -41,14 +49,19 @@ const AppProvider = ({ children }) => {
   };
 
   useEffect(() => {
-    if (query) {
-      search();
-    }
     getallJobs();
   }, [query]);
   return (
     <AppContext.Provider
-      value={{ loading, setLoading, search, results, query, setQuery }}
+      value={{
+        loading,
+        setLoading,
+        search,
+        results,
+        query,
+        setQuery,
+        getallJobs,
+      }}
     >
       {children}
     </AppContext.Provider>

@@ -24,14 +24,7 @@ const customStyles = {
 };
 
 const Search = () => {
-  // const { search, results } = useSearch();
-  // const [query, setQuery] = useState('');
-  const { setQuery, search } = useGlobalContext();
-  const queryValue = useRef('');
-
-  const searchJobs = () => {
-    setQuery(queryValue.current.value);
-  };
+  const { setQuery, query, getallJobs } = useGlobalContext();
 
   const [modal, setModal] = useState(false);
   const [placeholder, setplaceholder] = useState(
@@ -71,6 +64,7 @@ const Search = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    getallJobs();
   };
 
   return (
@@ -78,7 +72,7 @@ const Search = () => {
       <div className="container search-container mx-auto px-6 tablet:px-0 w-327 tablet:w-689 desktop:w-1110">
         {/* mobile */}
         <div className=" bg-white w-327 h-20 tablet:w-689 desktop:w-1110  dark:bg-19202D  rounded shadow relative z-10 -mt-8 mb-8 ">
-          <div className="w-327 h-20 tablet:hidden flex justify-between px-6">
+          <form className="w-327 h-20 tablet:hidden flex justify-between px-6">
             <div className="flex order-2 basis-1/4">
               <div className="flex items-center pr-3 h-full cursor-pointer">
                 <button onClick={showModal}>
@@ -129,12 +123,13 @@ const Search = () => {
             </div>
 
             <input
-              onChange={searchJobs}
+              onChange={(e) => setQuery(e.target.value)}
+              value={query}
               id="search"
               className="text-19202D caret-violet  dark:bg-19202D dark:text-white focus:outline-none font-normal h-full basis-3/4 pr-4 flex items-center text-body order-1"
               placeholder="Filter by title…"
             />
-          </div>
+          </form>
 
           {/* tablet/desktop */}
           <div className="bg-white hidden h-full dark:bg-19202D tablet:flex tablet:justify-center">
@@ -158,8 +153,8 @@ const Search = () => {
                 </div>
                 <input
                   id="search"
-                  ref={queryValue}
-                  onChange={searchJobs}
+                  onChange={(e) => setQuery(e.target.value)}
+                  value={query}
                   className="focus:outline-none caret-violet  text-19202D dark:text-white dark:bg-19202D font-normal w-full h-full flex items-center pl-12 pr-4 text-body cursor-pointer"
                   placeholder={
                     placeholder === true

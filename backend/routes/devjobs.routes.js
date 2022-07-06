@@ -5,10 +5,14 @@ const {
   getDevjobs,
   filterDevjobs,
   getSinglejob,
+  filterLocation,
+  filterContract,
 } = require('../controllers/devjobs.controller');
 
 router.route('/').get(getDevjobs);
+router.route('/search').get(filterDevjobs);
+router.route('/search/contract').get(filterContract);
+router.route('/search/location').get(filterLocation);
 router.route('/:id').get(getSinglejob);
-router.route('/search?').get(filterDevjobs);
 
 module.exports = router;

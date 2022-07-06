@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import ToggleTheme from './ToggleTheme.jsx';
 
-const Navbar = () => {
+const Navbar = ({ id }) => {
+  const [showback, setShowback] = useState(false);
   return (
     <nav className="nav relative">
       <picture className="pattern-header">
@@ -18,7 +19,11 @@ const Navbar = () => {
       </picture>
       <div className="absolute top-8 flex items-center justify-between w-full px-6 tablet:px-10 laptop:px-24 desktop:px-156">
         <Link to="/">
-          <img src="/assets/desktop/logo.svg" className="w-115 h-8" alt="" />
+          {id ? (
+            <p>Go back</p>
+          ) : (
+            <img src="/assets/desktop/logo.svg" className="w-115 h-8" alt="" />
+          )}
         </Link>
 
         <ToggleTheme />

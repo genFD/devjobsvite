@@ -57,7 +57,7 @@ function Detail() {
 
   return (
     <>
-      <Navbar />
+      <Navbar id={id} />
       <div className="card-detail flex flex-col items-center mt-4 gap-6">
         <>
           <CardHeader

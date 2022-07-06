@@ -15,7 +15,7 @@ const getDevjobs = (request, response) => {
 };
 
 const getSinglejob = (request, response) => {
-  const { id } = request.params;
+  const { id } = parseInt(request.params);
   pool.query(`SELECT * FROM dev_jobs WHERE id = $1`, [id], (error, results) => {
     if (error) {
       throw error;
@@ -26,11 +26,15 @@ const getSinglejob = (request, response) => {
 
 const filterDevjobs = (request, response) => {
   if (request.query) {
-    const { company, position } = request.query;
-    console.log({ company, position });
+    const { company, position, expertise } = request.query;
+    // console.log({ company, position, expertise });
     pool.query(
-      `SELECT * FROM dev_jobs WHERE content ->> 'company' LIKE INITCAP($1) OR content ->> 'position' LIKE INITCAP($2)`,
-      ['%' + company + '%', '%' + position + '%'],
+      `SELECT * FROM dev_jobs WHERE 
+      content ->> 'position' ILIKE $1 
+      OR content ->> 'company' ILIKE $2
+      OR content -> 'requirements' ->> 'items' ILIKE $3
+      `,
+      [`%${position}%`, `%${company}%`, `%${expertise}%`],
       (error, results) => {
         if (error) {
           throw error;
@@ -41,4 +45,44 @@ const filterDevjobs = (request, response) => {
   }
 };
 
-module.exports = { getDevjobs, filterDevjobs, getSinglejob };
+const filterLocation = (request, response) => {
+  if (request.query) {
+    const { location } = request.query;
+    console.log({ location });
+    pool.query(
+      `SELECT * FROM dev_jobs WHERE content ->> 'location' ILIKE $1`,
+      [`%${location}%`],
+      (error, results) => {
+        if (error) {
+          throw error;
+        }
+        response.status(StatusCodes.OK).json(results.rows);
+      }
+    );
+  }
+};
+
+const filterContract = (request, response) => {
+  if (request.query) {
+    const { contract } = request.query;
+    console.log({ contract });
+    pool.query(
+      `SELECT * FROM dev_jobs WHERE content ->> 'contract' ILIKE $1`,
+      [`%${contract}%`],
+      (error, results) => {
+        if (error) {
+          throw error;
+        }
+        response.status(StatusCodes.OK).json(results.rows);
+      }
+    );
+  }
+};
+
+module.exports = {
+  getDevjobs,
+  filterDevjobs,
+  filterLocation,
+  filterContract,
+  getSinglejob,
+};

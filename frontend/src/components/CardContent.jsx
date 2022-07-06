@@ -47,10 +47,13 @@ const CardContent = ({
       <div className="mt-8">
         <div>
           <ul className="text-6E8098 unreqlist  items-center justify-center dark:text-9DAEC2 text-body2 font-normal">
-            <li className="flex gap-4 items-center">{requirements.items[0]}</li>
-            <li className="flex gap-4 items-center">{requirements.items[1]}</li>
-            <li className="flex gap-4 items-center">{requirements.items[2]}</li>
-            <li className="flex gap-4 items-center">{requirements.items[3]}</li>
+            {requirements.items.map((item, index) => {
+              return (
+                <li key={index} className="flex gap-4 items-center">
+                  {item}
+                </li>
+              );
+            })}
           </ul>
         </div>
       </div>
@@ -67,10 +70,9 @@ const CardContent = ({
       <div className="mt-8">
         <div>
           <ol className="text-6E8098 dark:text-9DAEC2 text-body2 flex flex-col gap-2 font-normal req-list">
-            <li className="flex gap-4 items-center">{role.items[0]}</li>
-            <li className="flex gap-4 items-center">{role.items[1]}</li>
-            <li className="flex gap-4 items-center">{role.items[2]}</li>
-            <li className="flex gap-4 items-center">{role.items[3]}</li>
+            {role.items.map((item, index) => {
+              return <li key={index}>{item}</li>;
+            })}
           </ol>
         </div>
       </div>
