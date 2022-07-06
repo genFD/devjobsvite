@@ -15,12 +15,11 @@ function Detail() {
   const [jobDetail, setJobDetail] = useState(null);
 
   const { id } = useParams();
-  const idNum = parseInt(id);
 
   useEffect(() => {
     const getJobDetail = async () => {
       try {
-        const { data } = await axios.get(`/v1/devjobs/jobs/${idNum}`);
+        const { data } = await axios.get(`/v1/devjobs/jobs/${id}`);
         if (data) {
           setJobDetail(data);
         } else {

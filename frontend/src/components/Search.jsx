@@ -24,7 +24,8 @@ const customStyles = {
 };
 
 const Search = () => {
-  const { setQuery, query, getallJobs } = useGlobalContext();
+  const { setQuery, query, location, setLocation, checked, handleCheckbox } =
+    useGlobalContext();
 
   const [modal, setModal] = useState(false);
   const [placeholder, setplaceholder] = useState(
@@ -64,7 +65,6 @@ const Search = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    getallJobs();
   };
 
   return (
@@ -179,7 +179,9 @@ const Search = () => {
                   </svg>
                 </div>
                 <input
-                  id="email2"
+                  id="location"
+                  onChange={(e) => setLocation(e.target.value)}
+                  value={location}
                   className="focus:outline-none caret-violet text-19202D dark:text-white dark:bg-19202D font-normal w-full h-full flex items-center pl-12 pr-4 text-body cursor-pointer"
                   placeholder="Filter by location…"
                 />
@@ -190,6 +192,8 @@ const Search = () => {
                   <div className="bg-white dark:bg-gray-800 border rounded-sm border-gray-400 dark:border-gray-700 w-5 h-5 flex flex-shrink-0 justify-center items-center relative">
                     <input
                       type="checkbox"
+                      checked={checked}
+                      onChange={handleCheckbox}
                       className="checkbox opacity-0 absolute cursor-pointer w-full h-full"
                     />
                     <div className="check-icon hidden bg-violet text-white rounded-sm">
@@ -216,14 +220,14 @@ const Search = () => {
                       Only
                     </span>
                   </p>
-                  <div className="w-1/3 ml-10 flex justify-end">
+                  {/* <div className="w-1/3 ml-10 flex justify-end">
                     <button
                       // onClick={handleSubmit}
                       className="w-20 h-12 desktop:w-123 desktop:h-48 bg-5964E0 text-white rounded-md flex items-center justify-center text-body2 transition-colors duration-200 cursor-pointer hover:bg-light-violet"
                     >
                       Search
                     </button>
-                  </div>
+                  </div> */}
                 </div>
 
                 <style>
@@ -236,7 +240,6 @@ const Search = () => {
           </div>
         </div>
       </div>
-      {/* <Cards results={results} /> */}
     </>
   );
 };

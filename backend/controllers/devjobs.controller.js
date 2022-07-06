@@ -15,7 +15,7 @@ const getDevjobs = (request, response) => {
 };
 
 const getSinglejob = (request, response) => {
-  const { id } = parseInt(request.params);
+  const { id } = request.params;
   pool.query(`SELECT * FROM dev_jobs WHERE id = $1`, [id], (error, results) => {
     if (error) {
       throw error;
