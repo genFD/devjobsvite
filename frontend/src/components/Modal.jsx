@@ -1,9 +1,12 @@
 import React from 'react';
+import { useGlobalContext } from '../context/context.jsx';
 
-const LocationModal = ({ closeModal }) => {
+const LocationModal = () => {
+  const { setLocation, handleSubmit, closeModal, checked, handleCheckbox } =
+    useGlobalContext();
   return (
     <div className=" flex justify-center mt-4 modal-container">
-      <div className="w-327 h-217 bg-white dark:bg-very-dark-blue py-6 rounded-md relative">
+      <form className="w-327 h-217 bg-white dark:bg-very-dark-blue py-6 rounded-md relative">
         <div className="flex justify-center items-center border-b border-b-6E8098 border-opacity-20">
           <button onClick={closeModal} className="absolute right-4 top-2">
             <svg
@@ -35,6 +38,8 @@ const LocationModal = ({ closeModal }) => {
           </div>
 
           <input
+            id="location"
+            onChange={(e) => setLocation(e.target.value)}
             className="w-full focus:outline-none px-4 py-3 text-heading-4 caret-violet leading-none text-very-dark-blue dark:text-white bg-transparent placeholder-light-grey dark:placeholder-white"
             placeholder="Filter by location..."
           />
@@ -44,7 +49,9 @@ const LocationModal = ({ closeModal }) => {
             <div className="bg-white dark:bg-gray-800 border rounded-sm border-gray-400 dark:border-gray-700 w-5 h-5 flex flex-shrink-0 justify-center items-center relative">
               <input
                 type="checkbox"
-                className="checkbox   opacity-0 absolute cursor-pointer w-full h-full"
+                checked={checked}
+                onChange={handleCheckbox}
+                className="checkbox opacity-0 absolute cursor-pointer w-full h-full"
               />
               <div className="check-icon hidden bg-violet text-white rounded-sm">
                 <svg
@@ -75,11 +82,14 @@ const LocationModal = ({ closeModal }) => {
           </style>
         </div>
         <div className="mt-6 flex justify-center">
-          <button className="w-279 h-48 bg-violet rounded-md grid place-items-center font-bold text-white text-body transition-colors duration-200 cursor-pointer">
+          <button
+            onClick={handleSubmit}
+            className="w-279 h-48 bg-violet rounded-md grid place-items-center font-bold text-white text-body transition-colors duration-200 cursor-pointer"
+          >
             Search
           </button>
         </div>
-      </div>
+      </form>
     </div>
   );
 };

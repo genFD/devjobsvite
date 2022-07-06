@@ -6,7 +6,9 @@ const API_URL = '/v1/devjobs/jobs/';
 
 const AppProvider = ({ children }) => {
   const [loading, setLoading] = useState(false);
+  const [modal, setModal] = useState(false);
   const [query, setQuery] = useState('');
+  const [valid, setValid] = useState(false);
   const [location, setLocation] = useState('');
   const [contract, setContract] = useState('');
   const [checked, setChecked] = useState(false);
@@ -85,18 +87,72 @@ const AppProvider = ({ children }) => {
   const handleCheckbox = () => {
     setChecked(!checked);
   };
+  const showLoadmore = () => {
+    setValid(true);
+  };
+  const hideLoadmore = () => {
+    setValid(false);
+  };
+  const showModal = () => setModal(true);
+  const closeModal = () => setModal(false);
+  const handleLoadMore = () => {
+    getJobs();
+    // hideLoadmore();
+  };
+  const clearInput = () => {
+    if (query) {
+      setQuery('');
+    } else {
+      setLocation('');
+    }
+  };
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    if (query) {
+      getJobs();
+      setQuery('');
+    } else {
+      getJobsByLocation();
+      setLocation('');
+    }
+    hideLoadmore();
+  };
+  const handleSubmitByLocation = (event) => {
+    event.preventDefault();
+    getJobsByLocation();
+    hideLoadmore();
+  };
 
   useEffect(() => {
     getJobs();
-    getJobsByLocation();
-    getJobsByContract();
-  }, [query, location, checked]);
+    handleLoadMore();
+    // if (location) {
+    //   getJobsByLocation();
+    // }
+    if (checked) {
+      getJobsByContract();
+    }
+  }, [checked]);
+
+  // useEffect(() => {
+  //   getJobs();
+  //   handleLoadMore();
+  //   if (location) {
+  //     getJobsByLocation();
+  //   }
+  //   if (checked) {
+  //     getJobsByContract();
+  //   }
+  // }, []);
 
   return (
     <AppContext.Provider
       value={{
         loading,
         setLoading,
+        modal,
+        showModal,
+        closeModal,
         results,
         query,
         setQuery,
@@ -108,6 +164,13 @@ const AppProvider = ({ children }) => {
         handleCheckbox,
         contract,
         getJobs,
+        handleSubmit,
+        handleSubmitByLocation,
+        handleLoadMore,
+        clearInput,
+        valid,
+        showLoadmore,
+        hideLoadmore,
       }}
     >
       {children}

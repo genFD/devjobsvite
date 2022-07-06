@@ -24,16 +24,24 @@ const customStyles = {
 };
 
 const Search = () => {
-  const { setQuery, query, location, setLocation, checked, handleCheckbox } =
-    useGlobalContext();
+  const {
+    setQuery,
+    query,
+    location,
+    setLocation,
+    checked,
+    handleSubmit,
+    handleCheckbox,
+    clearInput,
+    closeModal,
+    showModal,
+    modal,
+    showLoadmore,
+  } = useGlobalContext();
 
-  const [modal, setModal] = useState(false);
   const [placeholder, setplaceholder] = useState(
     JSON.parse(localStorage.getItem('placeholder'))
   );
-
-  const showModal = () => setModal(true);
-  const closeModal = () => setModal(false);
 
   const modalFixer = () => {
     if (window.innerWidth >= 768) {
@@ -63,20 +71,42 @@ const Search = () => {
       });
   }, [placeholder]);
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-  };
-
   return (
     <>
       <div className="container search-container mx-auto px-6 tablet:px-0 w-327 tablet:w-689 desktop:w-1110">
         {/* mobile */}
         <div className=" bg-white w-327 h-20 tablet:w-689 desktop:w-1110  dark:bg-19202D  rounded shadow relative z-10 -mt-8 mb-8 ">
-          <form className="w-327 h-20 tablet:hidden flex justify-between px-6">
-            <div className="flex order-2 basis-1/4">
-              <div className="flex items-center pr-3 h-full cursor-pointer">
-                <button onClick={showModal}>
+          <form
+            onSubmit={handleSubmit}
+            className="w-327 h-20 tablet:hidden flex"
+          >
+            <div className="flex order-2 basis-1/4 pr-3">
+              <div className="flex items-center h-full cursor-pointer">
+                <div className="flex gap-1 ">
+                  {query && (
+                    <div>
+                      <svg
+                        onClick={clearInput}
+                        xmlns="http://www.w3.org/2000/svg"
+                        aria-label="Close"
+                        className="icon icon-tabler icon-tabler-x"
+                        width={20}
+                        height={20}
+                        viewBox="0 0 24 24"
+                        strokeWidth="2.5"
+                        stroke="#6E8098"
+                        fill="none"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      >
+                        <path stroke="none" d="M0 0h24v24H0z" />
+                        <line x1={18} y1={6} x2={6} y2={18} />
+                        <line x1={6} y1={6} x2={18} y2={18} />
+                      </svg>
+                    </div>
+                  )}
                   <svg
+                    onClick={showModal}
                     className="location-icon"
                     width={20}
                     height={20}
@@ -92,7 +122,7 @@ const Search = () => {
                       />
                     </g>
                   </svg>
-                </button>
+                </div>
                 {
                   <Modal
                     isOpen={modal}
@@ -106,7 +136,10 @@ const Search = () => {
                 }
               </div>
               <div className="flex items-center">
-                <button className="px-3 py-3 bg-5964E0 focus:outline-none hover:bg-opacity-80 ml-2 rounded">
+                <button
+                  type="submit"
+                  className="px-3 py-3 bg-5964E0 focus:outline-none hover:bg-opacity-80 ml-2 rounded"
+                >
                   <svg
                     width={24}
                     height={24}
@@ -126,7 +159,7 @@ const Search = () => {
               onChange={(e) => setQuery(e.target.value)}
               value={query}
               id="search"
-              className="text-19202D caret-violet  dark:bg-19202D dark:text-white focus:outline-none font-normal h-full basis-3/4 pr-4 flex items-center text-body order-1"
+              className="text-19202D caret-violet  dark:bg-19202D dark:text-white focus:outline-none font-normal h-full basis-3/4 px-3 flex items-center text-body order-1"
               placeholder="Filter by title…"
             />
           </form>
@@ -155,13 +188,35 @@ const Search = () => {
                   id="search"
                   onChange={(e) => setQuery(e.target.value)}
                   value={query}
-                  className="focus:outline-none caret-violet  text-19202D dark:text-white dark:bg-19202D font-normal w-full h-full flex items-center pl-12 pr-4 text-body cursor-pointer"
+                  className="focus:outline-none caret-violet  text-19202D dark:text-white dark:bg-19202D font-normal w-full h-full flex items-center px-12 text-body cursor-pointer"
                   placeholder={
                     placeholder === true
                       ? 'Filter by title, companies, expertise…'
                       : 'Filter by title…'
                   }
                 />
+                {query && (
+                  <div>
+                    <svg
+                      onClick={clearInput}
+                      xmlns="http://www.w3.org/2000/svg"
+                      aria-label="Close"
+                      className="icon icon-tabler icon-tabler-x absolute top-7 right-4"
+                      width={20}
+                      height={20}
+                      viewBox="0 0 24 24"
+                      strokeWidth="2.5"
+                      stroke="#6E8098"
+                      fill="none"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    >
+                      <path stroke="none" d="M0 0h24v24H0z" />
+                      <line x1={18} y1={6} x2={6} y2={18} />
+                      <line x1={6} y1={6} x2={18} y2={18} />
+                    </svg>
+                  </div>
+                )}
               </div>
 
               <div className="basis-1/3 relative border-l border-r dark:border-gray-700">
@@ -182,9 +237,31 @@ const Search = () => {
                   id="location"
                   onChange={(e) => setLocation(e.target.value)}
                   value={location}
-                  className="focus:outline-none caret-violet text-19202D dark:text-white dark:bg-19202D font-normal w-full h-full flex items-center pl-12 pr-4 text-body cursor-pointer"
+                  className="focus:outline-none caret-violet text-19202D dark:text-white dark:bg-19202D font-normal w-full h-full flex items-center px-12 text-body cursor-pointer"
                   placeholder="Filter by location…"
                 />
+                {location && (
+                  <div>
+                    <svg
+                      onClick={clearInput}
+                      xmlns="http://www.w3.org/2000/svg"
+                      aria-label="Close"
+                      className="icon icon-tabler icon-tabler-x absolute top-7 right-4"
+                      width={20}
+                      height={20}
+                      viewBox="0 0 24 24"
+                      strokeWidth="2.5"
+                      stroke="#6E8098"
+                      fill="none"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    >
+                      <path stroke="none" d="M0 0h24v24H0z" />
+                      <line x1={18} y1={6} x2={6} y2={18} />
+                      <line x1={6} y1={6} x2={18} y2={18} />
+                    </svg>
+                  </div>
+                )}
               </div>
 
               <div className="basis-1/3 relative">
@@ -220,14 +297,15 @@ const Search = () => {
                       Only
                     </span>
                   </p>
-                  {/* <div className="w-1/3 ml-10 flex justify-end">
+                  <div className="w-1/3 ml-10 flex justify-end">
                     <button
-                      // onClick={handleSubmit}
+                      type="submit"
+                      onClick={handleSubmit}
                       className="w-20 h-12 desktop:w-123 desktop:h-48 bg-5964E0 text-white rounded-md flex items-center justify-center text-body2 transition-colors duration-200 cursor-pointer hover:bg-light-violet"
                     >
                       Search
                     </button>
-                  </div> */}
+                  </div>
                 </div>
 
                 <style>
