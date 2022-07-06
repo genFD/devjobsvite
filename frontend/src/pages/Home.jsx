@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import {
   Navbar,
   Search,
@@ -10,6 +11,7 @@ import {
   Footer,
 } from '../components';
 import Test from '../components/Test.jsx';
+import useSearch from '../hooks/useSearch';
 
 function Home() {
   return (

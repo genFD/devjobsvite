@@ -15,6 +15,8 @@ import CardHeader from './CardHeader.jsx';
 import CardContent from './CardContent.jsx';
 import CardFooter from './CardFooter.jsx';
 import Footer from './Footer.jsx';
+import Loading from './Loading.jsx';
+import NoResults from './NoResults.jsx';
 
 export {
   FormRow,
@@ -34,4 +36,6 @@ export {
   CardContent,
   CardFooter,
   Footer,
+  Loading,
+  NoResults,
 };
