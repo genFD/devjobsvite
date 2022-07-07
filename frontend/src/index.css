@@ -164,3 +164,8 @@ ol {
 .registerpage {
   min-width: 375px;
 }
+
+.loading-container {
+  min-height: calc(80vh - 236px);
+  min-width: 375px;
+}

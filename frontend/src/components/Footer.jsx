@@ -6,7 +6,6 @@ const Footer = () => {
   const { query, valid } = useGlobalContext();
   return (
     <footer className="main-footer flex justify-center items-center ">
-      {/* {!valid && !query ? null : <LoadMoreButton />} */}
       <LoadMoreButton />
     </footer>
   );
