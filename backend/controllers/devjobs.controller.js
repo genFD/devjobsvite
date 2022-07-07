@@ -48,7 +48,6 @@ const filterDevjobs = (request, response) => {
 const filterLocation = (request, response) => {
   if (request.query) {
     const { location } = request.query;
-    console.log({ location });
     pool.query(
       `SELECT * FROM dev_jobs WHERE content ->> 'location' ILIKE $1`,
       [`%${location}%`],

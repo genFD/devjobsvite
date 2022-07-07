@@ -10,7 +10,6 @@ const AppProvider = ({ children }) => {
   /* ------------------- */
   const [query, setQuery] = useState('');
   const [location, setLocation] = useState('');
-  const [contract, setContract] = useState('');
   const [results, setResults] = useState([]);
   const [loading, setLoading] = useState(false);
   const [modal, setModal] = useState(false);
@@ -20,19 +19,23 @@ const AppProvider = ({ children }) => {
     JSON.parse(localStorage.getItem('placeholder'))
   );
 
-  /* ------------------- */
+  /* -------------------------------- */
   /* CORE FILTER FUNCTIONNALITIES */
-  /* ------------------- */
+  /* -------------------------------- */
+
+  //get all the data if query state is empty or get a set of data that matches query and populate results state.
   const getJobs = async () => {
     setLoading(true);
+    //1---- constructing url to hit server endpoint.
     let url;
     const urlQuery = `&position=${query}&company=${query}&expertise=${query}`;
+    //if query input contains a value then url is different and so is the controller in the backend
     if (query) {
       url = `${API_URL}/search?${urlQuery}`;
     } else {
       url = API_URL;
     }
-
+    //2------ fetching data using url in the first step
     try {
       const { data } = await axios.get(`${url}`);
       if (data) {
@@ -46,6 +49,8 @@ const AppProvider = ({ children }) => {
       setLoading(false);
     }
   };
+
+  // get a set of data that matches location query and populate results state.
   const getJobsByLocation = async () => {
     setLoading(true);
     let url;
@@ -55,7 +60,6 @@ const AppProvider = ({ children }) => {
     } else {
       url = API_URL;
     }
-
     try {
       const { data } = await axios.get(`${url}`);
       if (data) {
@@ -69,6 +73,13 @@ const AppProvider = ({ children }) => {
       setLoading(false);
     }
   };
+
+  // Toggle checked state
+  const handleCheckbox = () => {
+    setChecked(!checked);
+  };
+
+  // get a set of data that matches Full-time contract when checked state is true and populate results state.
   const getJobsByContract = async () => {
     setLoading(true);
     const fullTime = 'Full Time';
@@ -93,6 +104,8 @@ const AppProvider = ({ children }) => {
       setLoading(false);
     }
   };
+
+  // get job info to populate detail page
   const getJobDetail = async (id) => {
     try {
       const { data } = await axios.get(`/v1/devjobs/jobs/${id}`);
@@ -106,9 +119,8 @@ const AppProvider = ({ children }) => {
       console.log(error.response);
     }
   };
-  const handleCheckbox = () => {
-    setChecked(!checked);
-  };
+
+  // clear query and location input
   const clearInput = () => {
     if (query) {
       setQuery('');
@@ -116,29 +128,33 @@ const AppProvider = ({ children }) => {
       setLocation('');
     }
   };
+
+  // invoke getjobs or getjobsbylocation
   const handleSubmit = (event) => {
     event.preventDefault();
     if (query) {
       getJobs();
-      setQuery('');
     } else {
       getJobsByLocation();
-      setLocation('');
     }
   };
+
+  // invoke get jobs to get all the jobs back/ useful for loadmore button
   const handleLoadMore = () => {
     getJobs();
   };
-  // on first render display all jobs
+
   useEffect(() => {
+    // on first render display all jobs
     getJobs();
+    // rerender list of jobs component when ckecked state is true
     getJobsByContract();
     // eslint-disable-next-line
   }, [checked]);
 
-  /* ------------------- */
+  /* ---------------------------------- */
   /* MANAGING LOCATION MODAL ON MOBILE */
-  /* ------------------- */
+  /* --------------------------------- */
 
   // utility functions to show and hide modal
   const showModal = () => setModal(true);
@@ -151,10 +167,10 @@ const AppProvider = ({ children }) => {
     }
   };
 
-  /* ------------------- */
+  /* ----------------------------------- */
   /* MANAGING QUERY INPUT PLACEHOLDER */
-  /* ------------------- */
-
+  /* ---------------------------------- */
+  // query input placeholder changes on large screens
   // storing  local storage placeholder state value in local storage so that value stays consistent
   localStorage.setItem('placeholder', placeholder);
 
@@ -171,7 +187,6 @@ const AppProvider = ({ children }) => {
     <AppContext.Provider
       value={{
         loading,
-        setLoading,
         modal,
         modalFixer,
         swapPlaceholder,
@@ -183,12 +198,8 @@ const AppProvider = ({ children }) => {
         setQuery,
         setLocation,
         location,
-        setContract,
         checked,
-        setChecked,
         handleCheckbox,
-        contract,
-        getJobs,
         handleSubmit,
         handleLoadMore,
         clearInput,
