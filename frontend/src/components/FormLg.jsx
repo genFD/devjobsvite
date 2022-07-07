@@ -1,13 +1,8 @@
 import React from 'react';
-import {
-  QueryInput,
-  LocationInput,
-  ContractInput,
-  SearchButton,
-} from '../components';
+import { QueryInput, LocationInput, ContractInput, SearchButton } from '.';
 import { useGlobalContext } from '../context/context.jsx';
 
-const Form = () => {
+const FormLg = () => {
   const { handleSubmit } = useGlobalContext();
   return (
     <div className="hidden tablet:flex tablet:justify-center h-full bg-white dark:bg-19202D">
@@ -33,4 +28,4 @@ const Form = () => {
   );
 };
 
-export default Form;
+export default FormLg;

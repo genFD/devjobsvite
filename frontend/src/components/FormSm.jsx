@@ -1,18 +1,10 @@
 import React from 'react';
-import Modal from 'react-modal';
-import { LocationModal } from '../components';
+import { Modal } from '../components';
 import { useGlobalContext } from '../context/context.jsx';
 
-const MobileForm = () => {
-  const {
-    setQuery,
-    query,
-    handleSubmit,
-    clearInput,
-    closeModal,
-    showModal,
-    modal,
-  } = useGlobalContext();
+const FormSm = () => {
+  const { setQuery, query, handleSubmit, clearInput, showModal } =
+    useGlobalContext();
   return (
     <form onSubmit={handleSubmit} className="w-327 h-20 tablet:hidden flex">
       {/* TWO FLEX ITEMS : INPUT AND THE CONTAINER FOR THE BUTTONS AND MODAL */}
@@ -72,23 +64,11 @@ const MobileForm = () => {
             </svg>
           </div>
         </div>
-        {/* CLOSE AND LOCATION ICON END */}
 
         {/* MODAL */}
-        {
-          <Modal
-            isOpen={modal}
-            onRequestClose={closeModal}
-            style={customStyles}
-            className=" flex flex-col w-fit rounded-default"
-            contentLabel="Filter by location"
-          >
-            <LocationModal closeModal={closeModal} />
-          </Modal>
-        }
-        {/* MODAL ENDS */}
+        <Modal />
 
-        {/* SEARCH BUTTON */}
+        {/* SEARCH-BUTTON */}
         <div className="flex items-center">
           <button
             type="submit"
@@ -103,28 +83,9 @@ const MobileForm = () => {
             </svg>
           </button>
         </div>
-        {/* SEARCH BUTTON ENDS */}
       </div>
     </form>
   );
 };
 
-export default MobileForm;
-
-//setup for react-modal
-Modal.setAppElement('#root');
-const customStyles = {
-  overlay: {
-    backgroundColor: 'rgba(0, 0, 0, 0.5)',
-    zIndex: 50,
-  },
-  content: {
-    top: '50%',
-    left: '50%',
-    right: 'auto',
-    bottom: 'auto',
-    marginRight: '-50%',
-    transform: 'translate(-50%, -50%)',
-    position: 'relative',
-  },
-};
+export default FormSm;

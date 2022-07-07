@@ -130,13 +130,28 @@ const AppProvider = ({ children }) => {
   };
 
   // invoke getjobs or getjobsbylocation
-  const handleSubmit = (event) => {
-    event.preventDefault();
+  const handleSubmit = (e) => {
+    e.preventDefault();
     if (query) {
       getJobs();
     } else {
       getJobsByLocation();
     }
+    closeModal();
+  };
+
+  // handle submit for location modal on mobile
+  const handleSubmitModal = (e) => {
+    e.preventDefault();
+    getJobsByLocation();
+    closeModal();
+  };
+
+  // handle submit for checkbox
+  const handleCheckboxModal = (e) => {
+    e.preventDefault();
+    getJobsByContract();
+    closeModal();
   };
 
   // invoke get jobs to get all the jobs back/ useful for loadmore button
@@ -201,6 +216,8 @@ const AppProvider = ({ children }) => {
         checked,
         handleCheckbox,
         handleSubmit,
+        handleSubmitModal,
+        handleCheckboxModal,
         handleLoadMore,
         clearInput,
         getJobDetail,

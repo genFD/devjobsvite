@@ -11,6 +11,7 @@ const CardContent = ({
 }) => {
   return (
     <div className="bg-white rounded-md dark:bg-very-dark-blue w-327 px-6 tablet:px-12 py-10 tablet:w-689 desktop:w-730 desktop:mt-0">
+      {/* HEADER :  */}
       <div className="tablet:flex tablet:justify-between tablet:items-center">
         <header className="flex flex-col">
           <div className="flex items-center gap-3 text-dark-grey text-body">
@@ -32,15 +33,23 @@ const CardContent = ({
           </button>
         </div>
       </div>
+      {/* HEADER : ENDS */}
+
+      {/* JOB DESCRIPTION :  */}
+
       <div className="mt-8">
         <p className="text-body2 text-6E8098 dark:text-9DAEC2">{description}</p>
       </div>
+
+      {/* JOB DESCRIPTION : ENDS  */}
+
+      {/* REQUIREMENTS:  */}
       <div className="mt-8">
         <h3 className="text-19202D dark:text-white font-bold text-heading-3">
           Requirements
         </h3>
         <p className="mt-7 text-body2 text-6E8098 dark:text-9DAEC2">
-          {/* {requirements.content} */}
+          {requirements.content}
         </p>
       </div>
 
@@ -57,7 +66,9 @@ const CardContent = ({
           </ul>
         </div>
       </div>
+      {/* REQUIREMENTS: ENDS */}
 
+      {/* WHAT WILL YOU DO:  */}
       <div className="mt-10">
         <h3 className="text-19202D dark:text-white font-bold text-heading-3 ">
           What You Will Do
@@ -76,6 +87,7 @@ const CardContent = ({
           </ol>
         </div>
       </div>
+      {/* WHAT WILL YOU DO:  */}
     </div>
   );
 };
