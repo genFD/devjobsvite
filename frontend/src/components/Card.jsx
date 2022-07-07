@@ -18,7 +18,7 @@ const Card = ({
       >
         <img src={logo} alt="" />
       </div>
-      <div className="w-286 h-147 text-dark-grey ">
+      <article className="w-286 h-147 text-dark-grey ">
         <header className="flex items-center gap-3 mb-3 text-body">
           <span>{postedAt}</span>
           <span className="w-1 h-1 rounded-full bg-dark-grey"></span>
@@ -34,7 +34,7 @@ const Card = ({
         <footer className="mt-6 text-violet text-heading-4 font-bold">
           {location}
         </footer>
-      </div>
+      </article>
     </li>
   );
 };

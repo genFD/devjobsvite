@@ -1,19 +1,28 @@
-import React, { useState, useEffect, useContext, useCallback } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 const AppContext = React.createContext();
 
 const API_URL = '/v1/devjobs/jobs/';
 
 const AppProvider = ({ children }) => {
-  const [loading, setLoading] = useState(false);
-  const [modal, setModal] = useState(false);
+  /* ------------------- */
+  /* APP STATES VALUES */
+  /* ------------------- */
   const [query, setQuery] = useState('');
-  const [valid, setValid] = useState(false);
   const [location, setLocation] = useState('');
   const [contract, setContract] = useState('');
-  const [checked, setChecked] = useState(false);
   const [results, setResults] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [modal, setModal] = useState(false);
+  const [checked, setChecked] = useState(false);
+  const [jobDetail, setJobDetail] = useState(null);
+  const [placeholder, setplaceholder] = useState(
+    JSON.parse(localStorage.getItem('placeholder'))
+  );
 
+  /* ------------------- */
+  /* CORE FILTER FUNCTIONNALITIES */
+  /* ------------------- */
   const getJobs = async () => {
     setLoading(true);
     let url;
@@ -84,20 +93,21 @@ const AppProvider = ({ children }) => {
       setLoading(false);
     }
   };
+  const getJobDetail = async (id) => {
+    try {
+      const { data } = await axios.get(`/v1/devjobs/jobs/${id}`);
+      if (data) {
+        setJobDetail(data);
+      } else {
+        setJobDetail(null);
+      }
+      setLoading(false);
+    } catch (error) {
+      console.log(error.response);
+    }
+  };
   const handleCheckbox = () => {
     setChecked(!checked);
-  };
-  const showLoadmore = () => {
-    setValid(true);
-  };
-  const hideLoadmore = () => {
-    setValid(false);
-  };
-  const showModal = () => setModal(true);
-  const closeModal = () => setModal(false);
-  const handleLoadMore = () => {
-    getJobs();
-    // hideLoadmore();
   };
   const clearInput = () => {
     if (query) {
@@ -115,35 +125,47 @@ const AppProvider = ({ children }) => {
       getJobsByLocation();
       setLocation('');
     }
-    hideLoadmore();
   };
-  const handleSubmitByLocation = (event) => {
-    event.preventDefault();
-    getJobsByLocation();
-    hideLoadmore();
+  const handleLoadMore = () => {
+    getJobs();
   };
-
+  // on first render display all jobs
   useEffect(() => {
     getJobs();
-    handleLoadMore();
-    // if (location) {
-    //   getJobsByLocation();
-    // }
-    if (checked) {
-      getJobsByContract();
-    }
+    getJobsByContract();
+    // eslint-disable-next-line
   }, [checked]);
 
-  // useEffect(() => {
-  //   getJobs();
-  //   handleLoadMore();
-  //   if (location) {
-  //     getJobsByLocation();
-  //   }
-  //   if (checked) {
-  //     getJobsByContract();
-  //   }
-  // }, []);
+  /* ------------------- */
+  /* MANAGING LOCATION MODAL ON MOBILE */
+  /* ------------------- */
+
+  // utility functions to show and hide modal
+  const showModal = () => setModal(true);
+  const closeModal = () => setModal(false);
+
+  // hide modal on large screenss
+  const modalFixer = () => {
+    if (window.innerWidth >= 768) {
+      closeModal();
+    }
+  };
+
+  /* ------------------- */
+  /* MANAGING QUERY INPUT PLACEHOLDER */
+  /* ------------------- */
+
+  // storing  local storage placeholder state value in local storage so that value stays consistent
+  localStorage.setItem('placeholder', placeholder);
+
+  // Swap placeholder on large screen
+  const swapPlaceholder = () => {
+    if (window.innerWidth >= 1440) {
+      setplaceholder(true);
+    } else if (window.innerWidth < 1440) {
+      setplaceholder(false);
+    }
+  };
 
   return (
     <AppContext.Provider
@@ -151,6 +173,9 @@ const AppProvider = ({ children }) => {
         loading,
         setLoading,
         modal,
+        modalFixer,
+        swapPlaceholder,
+        placeholder,
         showModal,
         closeModal,
         results,
@@ -165,12 +190,10 @@ const AppProvider = ({ children }) => {
         contract,
         getJobs,
         handleSubmit,
-        handleSubmitByLocation,
         handleLoadMore,
         clearInput,
-        valid,
-        showLoadmore,
-        hideLoadmore,
+        getJobDetail,
+        jobDetail,
       }}
     >
       {children}

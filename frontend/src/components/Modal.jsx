@@ -6,10 +6,14 @@ const LocationModal = () => {
     useGlobalContext();
   return (
     <div className=" flex justify-center mt-4 modal-container">
-      <form className="w-327 h-217 bg-white dark:bg-very-dark-blue py-6 rounded-md relative">
+      <form
+        onSubmit={handleSubmit}
+        className="w-327 h-217 bg-white dark:bg-very-dark-blue py-6 rounded-md relative"
+      >
         <div className="flex justify-center items-center border-b border-b-6E8098 border-opacity-20">
-          <button onClick={closeModal} className="absolute right-4 top-2">
+          <div className="absolute right-4 top-2">
             <svg
+              onClick={closeModal}
               xmlns="http://www.w3.org/2000/svg"
               aria-label="Close"
               className="icon icon-tabler icon-tabler-x"
@@ -26,7 +30,7 @@ const LocationModal = () => {
               <line x1={18} y1={6} x2={6} y2={18} />
               <line x1={6} y1={6} x2={18} y2={18} />
             </svg>
-          </button>
+          </div>
           <div className="pl-6">
             <svg width="17" height="24" xmlns="http://www.w3.org/2000/svg">
               <path
@@ -83,7 +87,7 @@ const LocationModal = () => {
         </div>
         <div className="mt-6 flex justify-center">
           <button
-            onClick={handleSubmit}
+            type="submit"
             className="w-279 h-48 bg-violet rounded-md grid place-items-center font-bold text-white text-body transition-colors duration-200 cursor-pointer"
           >
             Search

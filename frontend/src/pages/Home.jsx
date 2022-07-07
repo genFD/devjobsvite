@@ -1,23 +1,10 @@
-import { useEffect } from 'react';
-import {
-  Navbar,
-  Search,
-  Jobs,
-  LoadMoreButton,
-  Header,
-  Card,
-  Cards,
-  CardDetail,
-  Footer,
-} from '../components';
-import Test from '../components/Test.jsx';
-import useSearch from '../hooks/useSearch';
+import { Navbar, Search, Cards, Footer } from '../components';
 
 function Home() {
   return (
     <>
       <Navbar />
-      <main id="home" className="dark:bg-midnight pb-16 main-content">
+      <main id="home" className="pb-16 min-w-[375px]">
         <Search />
         <Cards />
         <Footer />

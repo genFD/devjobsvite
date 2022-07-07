@@ -73,14 +73,8 @@ ol {
 }
 
 /* ------------------- */
-/* Navbar && filter */
+/* Navbar  */
 /* ------------------- */
-
-.nav {
-  max-height: 136px;
-  min-width: 375px;
-  overflow: hidden;
-}
 
 .search-container {
   min-width: 375px;
@@ -130,20 +124,12 @@ ol {
     row-gap: 65px;
     column-gap: 11px;
   }
-  .nav {
-    max-height: fit-content;
-    overflow: visible;
-  }
 }
 @media (min-width: 1440px) {
   .cards-container {
     grid-template-columns: 1fr 1fr 1fr;
     row-gap: 40px;
     column-gap: 30px;
-  }
-  .nav {
-    max-height: fit-content;
-    overflow: visible;
   }
 }
 
