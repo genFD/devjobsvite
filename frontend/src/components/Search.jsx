@@ -19,8 +19,8 @@ const Search = () => {
   }, []);
 
   return (
-    <div className="container search-container mx-auto px-6 tablet:px-0 w-327 tablet:w-689 desktop:w-1110">
-      <div className=" bg-white w-327 h-20 tablet:w-689 desktop:w-1110  dark:bg-19202D  rounded shadow relative z-10 -mt-8 mb-8 ">
+    <div className="container min-w-[375px] w-fit mx-auto flex justify-center">
+      <div className="w-327 h-20  tablet:w-689 desktop:w-1110 bg-white dark:bg-19202D rounded shadow-md z-10 relative -mt-8 mb-8 ">
         <MobileForm />
         <Form />
       </div>

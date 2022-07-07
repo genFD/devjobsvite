@@ -3,8 +3,6 @@ import Modal from 'react-modal';
 import { LocationModal } from '../components';
 import { useGlobalContext } from '../context/context.jsx';
 
-Modal.setAppElement('#root');
-
 const MobileForm = () => {
   const {
     setQuery,
@@ -17,8 +15,24 @@ const MobileForm = () => {
   } = useGlobalContext();
   return (
     <form onSubmit={handleSubmit} className="w-327 h-20 tablet:hidden flex">
-      <div className="flex order-2 basis-1/4 pr-3">
-        <div className="flex items-center h-full cursor-pointer">
+      {/* TWO FLEX ITEMS : INPUT AND THE CONTAINER FOR THE BUTTONS AND MODAL */}
+      {/* ps: modal position doesnt matter since it covers entire page */}
+
+      {/* 1------------ INPUT------------------------ */}
+      <input
+        onChange={(e) => setQuery(e.target.value)}
+        value={query}
+        id="search"
+        className="basis-3/4 text-19202D caret-violet  dark:bg-19202D dark:text-white focus:outline-none h-full  px-3 flex items-center text-body "
+        placeholder="Filter by title…"
+      />
+
+      {/*2-------------- CLOSE, LOCATION , MODAL, SEARCH BUTTON CONTAINER--------------- */}
+      <div className="basis-1/4 flex pr-3">
+        {/* space */}
+
+        {/* CLOSE AND LOCATION BUTTON */}
+        <div className="flex items-center h-full">
           <div className="flex gap-1 ">
             {query && (
               <div>
@@ -26,7 +40,7 @@ const MobileForm = () => {
                   onClick={clearInput}
                   xmlns="http://www.w3.org/2000/svg"
                   aria-label="Close"
-                  className="icon icon-tabler icon-tabler-x"
+                  className="icon icon-tabler icon-tabler-x close-icon bg-5964E0 stroke-white rounded-md transition-colors ease-in-out duration-150 cursor-pointer"
                   width={20}
                   height={20}
                   viewBox="0 0 24 24"
@@ -44,7 +58,7 @@ const MobileForm = () => {
             )}
             <svg
               onClick={showModal}
-              className="location-icon"
+              className="location-icon cursor-pointer"
               width={20}
               height={20}
               xmlns="http://www.w3.org/2000/svg"
@@ -57,18 +71,24 @@ const MobileForm = () => {
               </g>
             </svg>
           </div>
-          {
-            <Modal
-              isOpen={modal}
-              onRequestClose={closeModal}
-              style={customStyles}
-              className=" flex flex-col w-fit rounded-default"
-              contentLabel="Filter by location"
-            >
-              <LocationModal closeModal={closeModal} />
-            </Modal>
-          }
         </div>
+        {/* CLOSE AND LOCATION ICON END */}
+
+        {/* MODAL */}
+        {
+          <Modal
+            isOpen={modal}
+            onRequestClose={closeModal}
+            style={customStyles}
+            className=" flex flex-col w-fit rounded-default"
+            contentLabel="Filter by location"
+          >
+            <LocationModal closeModal={closeModal} />
+          </Modal>
+        }
+        {/* MODAL ENDS */}
+
+        {/* SEARCH BUTTON */}
         <div className="flex items-center">
           <button
             type="submit"
@@ -83,21 +103,16 @@ const MobileForm = () => {
             </svg>
           </button>
         </div>
+        {/* SEARCH BUTTON ENDS */}
       </div>
-
-      <input
-        onChange={(e) => setQuery(e.target.value)}
-        value={query}
-        id="search"
-        className="text-19202D caret-violet  dark:bg-19202D dark:text-white focus:outline-none font-normal h-full basis-3/4 px-3 flex items-center text-body order-1"
-        placeholder="Filter by title…"
-      />
     </form>
   );
 };
 
 export default MobileForm;
 
+//setup for react-modal
+Modal.setAppElement('#root');
 const customStyles = {
   overlay: {
     backgroundColor: 'rgba(0, 0, 0, 0.5)',

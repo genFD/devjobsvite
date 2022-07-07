@@ -10,7 +10,7 @@ import Toggle from './Toggle.jsx';
 import Card from './Card.jsx';
 import Cards from './Cards.jsx';
 import JobInfo from './JobInfo.jsx';
-
+import SearchButton from './SearchButton.jsx';
 import LocationModal from './Modal.jsx';
 import CardHeader from './CardHeader.jsx';
 import CardContent from './CardContent.jsx';
@@ -29,6 +29,7 @@ export {
   Navbar,
   Toggle,
   LoadMoreButton,
+  SearchButton,
   Card,
   Cards,
   JobInfo,

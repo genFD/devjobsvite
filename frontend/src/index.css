@@ -73,22 +73,8 @@ ol {
 }
 
 /* ------------------- */
-/* Navbar  */
+/* Custom list for job info requirements */
 /* ------------------- */
-
-.search-container {
-  min-width: 375px;
-}
-
-.cards-container {
-  min-width: 375px;
-}
-.modal-container {
-  min-width: 375px;
-}
-.card-detail {
-  min-width: 375px;
-}
 
 .unreqlist {
   counter-reset: orderedlist;
@@ -110,48 +96,4 @@ ol {
   color: #5964e0;
   font-weight: bold;
   margin-right: 1em;
-}
-.cards-container {
-  display: grid;
-  place-items: center;
-  row-gap: 49px;
-  grid-template-columns: 1fr;
-}
-
-@media (min-width: 768px) {
-  .cards-container {
-    grid-template-columns: 1fr 1fr;
-    row-gap: 65px;
-    column-gap: 11px;
-  }
-}
-@media (min-width: 1440px) {
-  .cards-container {
-    grid-template-columns: 1fr 1fr 1fr;
-    row-gap: 40px;
-    column-gap: 30px;
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  .location-icon {
-    fill: white;
-  }
-}
-
-/* ------------------- */
-/* Error */
-/* ------------------- */
-
-.errorpage {
-  min-width: 375px;
-}
-
-.registerpage {
-  min-width: 375px;
-}
-
-.loading-container {
-  min-height: calc(80vh - 236px);
-  min-width: 375px;
 }
