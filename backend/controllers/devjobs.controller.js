@@ -23,7 +23,7 @@ const getSinglejob = (request, response) => {
 const filterDevjobs = (request, response) => {
   if (request.query) {
     const { company, position, expertise } = request.query;
-    // console.log({ company, position, expertise });
+
     pool.query(
       `SELECT * FROM dev_jobs WHERE 
       content ->> 'position' ILIKE $1 
@@ -41,7 +41,7 @@ const filterDevjobs = (request, response) => {
   }
 };
 
-const filterLocation = (request, response) => {
+const filterByLocation = (request, response) => {
   if (request.query) {
     const { location } = request.query;
 
@@ -58,10 +58,9 @@ const filterLocation = (request, response) => {
   }
 };
 
-const filterContract = (request, response) => {
+const filterByContract = (request, response) => {
   if (request.query) {
     const { contract } = request.query;
-    console.log({ contract });
     pool.query(
       `SELECT * FROM dev_jobs WHERE content ->> 'contract' ILIKE $1`,
       [`%${contract}%`],
@@ -75,29 +74,10 @@ const filterContract = (request, response) => {
   }
 };
 
-const crossFilter = (request, response) => {
-  if (request.query) {
-    const { location, expertise } = request.query;
-    console.log({ expertise, location });
-
-    pool.query(
-      `SELECT * FROM dev_jobs WHERE content ->> 'location' ILIKE $1 AND content -> 'requirements' ->> 'items' ILIKE $2`,
-      [`%${location}%`, `%${expertise}%`],
-      (error, results) => {
-        if (error) {
-          throw error;
-        }
-        response.status(StatusCodes.OK).json(results.rows);
-      }
-    );
-  }
-};
-
 module.exports = {
   getDevjobs,
   filterDevjobs,
-  filterLocation,
-  filterContract,
+  filterByLocation,
+  filterByContract,
   getSinglejob,
-  crossFilter,
 };

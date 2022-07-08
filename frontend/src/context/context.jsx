@@ -108,7 +108,7 @@ const AppProvider = ({ children }) => {
   // get job info to populate detail page
   const getJobDetail = async (id) => {
     try {
-      const { data } = await axios.get(`/v1/devjobs/jobs/${id}`);
+      const { data } = await axios.get(`${API_URL}${id}`);
       if (data) {
         setJobDetail(data);
       } else {
@@ -152,21 +152,12 @@ const AppProvider = ({ children }) => {
     closeModal();
   };
 
-  // handle submit for checkbox
-  const handleCheckboxModal = (e) => {
-    e.preventDefault();
-    getJobsByContract();
-    closeModal();
-  };
-
   // invoke get jobs to get all the jobs back/ useful for loadmore button
   const handleLoadMore = () => {
     getJobs();
   };
 
   useEffect(() => {
-    // on first render display all jobs
-    // getJobs();
     // rerender list of jobs component when ckecked state is true
     getJobsByContract();
 
@@ -223,7 +214,6 @@ const AppProvider = ({ children }) => {
         handleCheckbox,
         handleSubmit,
         handleSubmitModal,
-        handleCheckboxModal,
         handleLoadMore,
         clearLocationInput,
         clearQueryInput,

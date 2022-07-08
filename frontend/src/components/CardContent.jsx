@@ -10,7 +10,7 @@ const CardContent = ({
   role,
 }) => {
   return (
-    <div className="bg-white rounded-md dark:bg-very-dark-blue w-327 px-6 tablet:px-12 py-10 tablet:w-689 desktop:w-730 desktop:mt-0">
+    <article className="bg-white rounded-md dark:bg-very-dark-blue w-327 px-6 tablet:px-12 py-10 tablet:w-689 desktop:w-730 desktop:mt-0">
       {/* HEADER :  */}
       <div className="tablet:flex tablet:justify-between tablet:items-center">
         <header className="flex flex-col">
@@ -88,7 +88,7 @@ const CardContent = ({
         </div>
       </div>
       {/* WHAT WILL YOU DO:  */}
-    </div>
+    </article>
   );
 };
 

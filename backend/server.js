@@ -9,22 +9,9 @@ colors.setTheme({
 });
 
 app.use(express.json());
-dotenv.config();
 
-app.get('/', (req, res) => {
-  res.json({ message: 'Node.js, Express, and Postgres API' });
-});
+dotenv.config();
 
 const PORT = process.env.PORT || 6000;
 
-const startServer = async () => {
-  try {
-    app.listen(
-      PORT,
-      console.log(`SERVER IS LISTENING ON PORT ${PORT}`.success)
-    );
-  } catch (error) {
-    console.log(`Cannot start server : ${error}`.error);
-  }
-};
-startServer();
+app.listen(PORT, console.log(`SERVER IS LISTENING ON PORT ${PORT}`.success));
