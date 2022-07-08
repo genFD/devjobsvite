@@ -1,10 +1,6 @@
 const pool = require('../db/config');
 const { StatusCodes } = require('http-status-codes');
 
-// @desc    Get all users
-// @route   GET /api/devjobs/users
-// @access  Private/Admin
-
 const getDevjobs = (request, response) => {
   pool.query('SELECT * FROM dev_jobs', (error, results) => {
     if (error) {
@@ -48,6 +44,7 @@ const filterDevjobs = (request, response) => {
 const filterLocation = (request, response) => {
   if (request.query) {
     const { location } = request.query;
+
     pool.query(
       `SELECT * FROM dev_jobs WHERE content ->> 'location' ILIKE $1`,
       [`%${location}%`],
@@ -78,10 +75,29 @@ const filterContract = (request, response) => {
   }
 };
 
+const crossFilter = (request, response) => {
+  if (request.query) {
+    const { location, expertise } = request.query;
+    console.log({ expertise, location });
+
+    pool.query(
+      `SELECT * FROM dev_jobs WHERE content ->> 'location' ILIKE $1 AND content -> 'requirements' ->> 'items' ILIKE $2`,
+      [`%${location}%`, `%${expertise}%`],
+      (error, results) => {
+        if (error) {
+          throw error;
+        }
+        response.status(StatusCodes.OK).json(results.rows);
+      }
+    );
+  }
+};
+
 module.exports = {
   getDevjobs,
   filterDevjobs,
   filterLocation,
   filterContract,
   getSinglejob,
+  crossFilter,
 };

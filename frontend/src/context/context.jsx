@@ -6,12 +6,12 @@ const API_URL = '/v1/devjobs/jobs/';
 
 const AppProvider = ({ children }) => {
   /* ------------------- */
-  /* APP STATES VALUES */
+  /* APP STATE */
   /* ------------------- */
+  const [loading, setLoading] = useState(false);
   const [query, setQuery] = useState('');
   const [location, setLocation] = useState('');
   const [results, setResults] = useState([]);
-  const [loading, setLoading] = useState(false);
   const [modal, setModal] = useState(false);
   const [checked, setChecked] = useState(false);
   const [jobDetail, setJobDetail] = useState(null);
@@ -23,7 +23,7 @@ const AppProvider = ({ children }) => {
   /* CORE FILTER FUNCTIONNALITIES */
   /* -------------------------------- */
 
-  //get all the data if query state is empty or get a set of data that matches query and populate results state.
+  //get all the data if query state is empty string or get a set of data that matches query and populate results state.
   const getJobs = async () => {
     setLoading(true);
     //1---- constructing url to hit server endpoint.
@@ -50,7 +50,7 @@ const AppProvider = ({ children }) => {
     }
   };
 
-  // get a set of data that matches location query and populate results state.
+  // get a set of data that matches location and populate results state.
   const getJobsByLocation = async () => {
     setLoading(true);
     let url;
@@ -120,13 +120,14 @@ const AppProvider = ({ children }) => {
     }
   };
 
-  // clear query and location input
-  const clearInput = () => {
-    if (query) {
-      setQuery('');
-    } else {
-      setLocation('');
-    }
+  // clear query input
+  const clearQueryInput = () => {
+    setQuery('');
+  };
+
+  // clear location input
+  const clearLocationInput = () => {
+    setLocation('');
   };
 
   // invoke getjobs or getjobsbylocation
@@ -134,8 +135,11 @@ const AppProvider = ({ children }) => {
     e.preventDefault();
     if (query) {
       getJobs();
-    } else {
+      clearQueryInput();
+    }
+    if (location) {
       getJobsByLocation();
+      clearLocationInput();
     }
     closeModal();
   };
@@ -144,6 +148,7 @@ const AppProvider = ({ children }) => {
   const handleSubmitModal = (e) => {
     e.preventDefault();
     getJobsByLocation();
+    clearLocationInput();
     closeModal();
   };
 
@@ -161,9 +166,10 @@ const AppProvider = ({ children }) => {
 
   useEffect(() => {
     // on first render display all jobs
-    getJobs();
+    // getJobs();
     // rerender list of jobs component when ckecked state is true
     getJobsByContract();
+
     // eslint-disable-next-line
   }, [checked]);
 
@@ -219,7 +225,8 @@ const AppProvider = ({ children }) => {
         handleSubmitModal,
         handleCheckboxModal,
         handleLoadMore,
-        clearInput,
+        clearLocationInput,
+        clearQueryInput,
         getJobDetail,
         jobDetail,
       }}

@@ -19,7 +19,6 @@ const PORT = process.env.PORT || 6000;
 
 const startServer = async () => {
   try {
-    // await connectDatabase();
     app.listen(
       PORT,
       console.log(`SERVER IS LISTENING ON PORT ${PORT}`.success)

@@ -2,7 +2,7 @@ import React from 'react';
 import { useGlobalContext } from '../context/context.jsx';
 
 const QueryInput = () => {
-  const { setQuery, query, clearInput, placeholder } = useGlobalContext();
+  const { setQuery, query, clearQueryInput, placeholder } = useGlobalContext();
   return (
     <div className="relative">
       {/* space */}
@@ -35,7 +35,7 @@ const QueryInput = () => {
       {query && (
         <div>
           <svg
-            onClick={clearInput}
+            onClick={clearQueryInput}
             xmlns="http://www.w3.org/2000/svg"
             aria-label="Close"
             className="icon icon-tabler icon-tabler-x absolute top-0 right-4 tablet:bg-5964E0 tablet:stroke-white desktop:hover:bg-5964E0 desktop:hover:stroke-white rounded-md transition-colors ease-in-out duration-150 cursor-pointer"

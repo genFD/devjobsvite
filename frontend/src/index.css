@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 /* ------------------- */
-/* Reset starts             */
+/* Reset starts        */
 /* ------------------- */
 
 /* Box sizing */
@@ -21,13 +21,7 @@ body {
   flex-direction: column;
   font-family: 'Baloo 2', Kumbh Sans, Poppins, sans-serif;
 }
-.main-content {
-  min-width: 375px;
-}
-.main-footer {
-  margin-top: auto;
-  min-width: 375px;
-}
+
 /* make images easier to work with */
 img,
 picture {
@@ -52,7 +46,7 @@ textarea {
   resize: none;
 }
 
-/* Remove default bullets */
+/* Remove default bullets points */
 ul {
   list-style: none;
 }
@@ -72,9 +66,18 @@ ol {
   }
 }
 
-/* ------------------- */
-/* Custom list for job info requirements */
-/* ------------------- */
+/* set min width and make sure footer stays at the bottom */
+.main-content {
+  min-width: 375px;
+}
+.main-footer {
+  margin-top: auto;
+  min-width: 375px;
+}
+
+/* ----------------------------------------  */
+/* Custom list for job info requirements    */
+/* --------------------------------------- */
 
 .unreqlist {
   counter-reset: orderedlist;

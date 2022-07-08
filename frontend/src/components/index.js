@@ -3,7 +3,7 @@ import Navbar from './Navbar.jsx';
 import QueryInput from './QueryInput.jsx';
 import LocationInput from './LocationInput.jsx';
 import ContractInput from './ContractInput.jsx';
-import LoadMoreButton from './LoadMoreButton.jsx';
+import ClearFilters from './ClearFilters.jsx';
 import Toggle from './Toggle.jsx';
 import Card from './Card.jsx';
 import Cards from './Cards.jsx';
@@ -29,7 +29,7 @@ export {
   Search,
   Navbar,
   Toggle,
-  LoadMoreButton,
+  ClearFilters,
   SearchButton,
   Card,
   Cards,
