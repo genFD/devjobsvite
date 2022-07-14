@@ -13,6 +13,7 @@ const pool = new Pool({
     rejectUnauthorized: false, // don't check for SSL cert
   },
 });
+// / don't check for SSL cert
 
 module.exports = {
   query: (query) => pool.query(query),
