@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import { Transition } from '@headlessui/react';
 import { Div } from 'react';
-
 import { JobInfo, Navbar, Loading, NoResults } from '../components';
 import { useParams } from 'react-router-dom';
 import { useGlobalContext } from '../context/context.jsx';

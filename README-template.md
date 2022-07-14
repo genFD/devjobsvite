@@ -42,7 +42,8 @@ Users should be able to:
 ### Useful resources
 
 - [Tailwind CSS](https://tailwindcss.com/docs) - This helped me speed up the styling process. I really liked this pattern and will use it going forward.
-- [Example resource 2](https://moderncss.dev/totally-custom-list-styles/) - This is an amazing article which helped me understand how to make custom list styling . I'd recommend it to anyone.
+- [Modern CSS](https://moderncss.dev/totally-custom-list-styles/) - This is an amazing article which helped me understand how to make custom list styling . I'd recommend it to anyone.
+- [Node-postrgres](https://node-postgres.com/) - Super cool library for interfacing with your PostgreSQL database.
 
 ## Author
 

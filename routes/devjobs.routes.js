@@ -9,10 +9,10 @@ const {
   filterByContract,
 } = require('../controllers/devjobs.controller');
 
-router.route('/').get(getDevjobs);
-router.route('/search').get(filterDevjobs);
-router.route('/search/contract').get(filterByContract);
-router.route('/search/location').get(filterByLocation);
-router.route('/:id').get(getSinglejob);
+router.get('/', getDevjobs);
+router.get('/search', filterDevjobs);
+router.get('/search/location', filterByLocation);
+router.get('/search/contract', filterByContract);
+router.get('/:id', getSinglejob);
 
 module.exports = router;

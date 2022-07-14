@@ -12,7 +12,7 @@ const Card = ({
 }) => {
   return (
     <li className="container w-327 h-228 desktop:w-350 tablet:w-339 relative bg-white dark:bg-very-dark-blue rounded-md flex justify-center items-center">
-      {/* ONE FLEX ITEM CENTERED VERT AND HORZ : CARD INFO */}
+      {/* ONE FLEX ITEM CENTERED VERT AND HORIZ : CARD INFO */}
 
       {/* LOGO ON TOP POSITION ABSOLUTE */}
       <div
